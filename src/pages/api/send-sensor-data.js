@@ -2,12 +2,15 @@ import axios from 'axios'
 
 export default function handler(req, res) {
     const token = req.headers['authorization']
+    const data = req.body
+
     if(token){
-        axios.get('https://i-pond-backend.ap.ngrok.io/api/logs', {
+        const config = {
             headers: {
                 "Authorization": token
             }
-        })
+        }
+        axios.post('https://i-pond-backend.ap.ngrok.io/api/sensor-readings', data, config)
         .then( response => {
             // console.log(response.data)
             return res.status(200).json({ data: response.data });
