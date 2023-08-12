@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     }
 
     return new Promise((resolve, reject) => {
-        axios.post('https://ras-backend.ap.ngrok.io/api/sensor-readings', data, config)
+        axios.post('https://ras-backend.ap.ngrok.io/api/sensor-readings', {data}, config)
           .then(response => {
             console.log('data',response.data)
             res.status(200).json({ data: response.data });
