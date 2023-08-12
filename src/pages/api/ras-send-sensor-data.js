@@ -2,12 +2,13 @@ import axios from 'axios'
 
 export default function handler(req, res) {
     const token = req.headers['authorization']
+    const token_ = req.headers['Authorization']
     const data = req.body
 
-    if(token){
+    if(token || token_){
         const config = {
             headers: {
-                "Authorization": token
+                "Authorization": token?token:token_
             }
         }
         axios.post('https://ras-backend.ap.ngrok.io/api/sensor-readings', data, config)
