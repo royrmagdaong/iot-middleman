@@ -4,30 +4,34 @@ export default async function handler(req, res) {
     const token = req.headers['authorization']
     const data = req.body
     // console.log('data', data)
-    console.log('req', req)
-    console.log('body', data)
-    console.log('token', token)
+    // console.log('req', req)
+    // console.log('body', data)
+    // console.log('token', token)
     // console.log(req)
 
     const config = {
         headers: {
-            // "Authorization": token
+            "Authorization": token
         }
     }
-
-    return await new Promise((resolve, reject) => {
+    if(token){
+      return await new Promise((resolve, reject) => {
         axios.post('https://ras-backend.ap.ngrok.io/api/sensor-readings', data, config)
-          .then(response => {
+        .then(response => {
             // console.log('data', response.data)
-            res.status(200).json({ data: response.data });
+          res.status(200).json({ data: response.data });
           resolve();
         })
         .catch(err => {
             // console.log(err)
-            res.status(500).json(err.response?.data)
+          res.status(500).json(err.response?.data)
           resolve(); // in case something goes wrong in the catch block (as vijay commented)
         });
-    });
+      });
+    }else{
+      return res.status(403).json({message: 'Unauthorized access'})
+    }
+    
 
 
     // axios.post('https://i-pond-backend.ap.ngrok.io/api/sensor-readings', data, config)
@@ -39,7 +43,7 @@ export default async function handler(req, res) {
     //     return res.status(err.response?.data.error.status).json(err.response?.data)
     // })
 
-    // if(data){
+    // if(token){
     //     const config = {
     //         // headers: {
     //         //     "Authorization": token
