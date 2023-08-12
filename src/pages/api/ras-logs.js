@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export default function handler(req, res) {
-    // const token = req.headers['authorization']
-    // console.log('TOKEN', token)
+    const token = req.headers['authorization']
+    console.log('TOKEN', token)
     // if(token){
        
     // }else{
