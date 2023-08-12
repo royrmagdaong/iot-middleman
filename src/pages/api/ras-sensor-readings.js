@@ -32,8 +32,8 @@ export default async function(req, res) {
         })
           .then(response => {
           res.statusCode = 200
-          res.setHeader('Content-Type', 'application/json');
-          res.setHeader('Cache-Control', 'max-age=180000');
+        //   res.setHeader('Content-Type', 'application/json');
+        //   res.setHeader('Cache-Control', 'max-age=180000');
           res.json({ data: response.data });
           resolve();
         })
