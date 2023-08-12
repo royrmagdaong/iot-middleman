@@ -21,7 +21,7 @@ import axios from 'axios'
 //     }
 // }
 
-export default async function(req, res) {
+export default async function handler(req, res) {
     const token = req.headers['authorization']
     console.log(token)
     return new Promise((resolve, reject) => {
