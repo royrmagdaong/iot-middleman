@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const token = req.headers['authorization']
     const token_ = req.headers['Authorization']
     const data = req.body
