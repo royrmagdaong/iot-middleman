@@ -11,10 +11,14 @@ export default async function handler(req, res) {
               }
           })
             .then(response => {
-            res.status(200).json({ data: response.data });
+            res.status(200).json({ 
+              ph_lower_limit: response.data?.data.attributes.ph_lower_limit,
+              ph_upper_limit: response.data?.data.attributes.ph_upper_limit
+            });
             resolve();
           })
           .catch(err => {
+            console.log(err)
             res.status(err.response?.data.error.status).json(err.response?.data)
             resolve(); // in case something goes wrong in the catch block (as vijay commented)
           });
