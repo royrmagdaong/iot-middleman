@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default function handler(req, res) {
     const token = req.headers['authorization']
+    // console.log(token)
     if(token){
         axios.get('https://i-pond-backend.ap.ngrok.io/api/sensor-readings', {
             headers: {
