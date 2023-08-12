@@ -31,14 +31,10 @@ export default async function handler(req, res) {
             }
         })
           .then(response => {
-          res.statusCode = 200
-        //   res.setHeader('Content-Type', 'application/json');
-        //   res.setHeader('Cache-Control', 'max-age=180000');
-          res.json({ data: response.data });
+          res.status(200).json({ data: response.data });
           resolve();
         })
         .catch(err => {
-          res.json(err);
           res.status(err.response?.data.error.status).json(err.response?.data)
           resolve(); // in case something goes wrong in the catch block (as vijay commented)
         });
