@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     console.log(token)
     if(token){
       return new Promise((resolve, reject) => {
-          axios.get('https://ras-backend.ap.ngrok.io/api/settings', {
+          axios.get('https://ras-backend.ap.ngrok.io/api/setting', {
               headers: {
                   "Authorization": token
               }
