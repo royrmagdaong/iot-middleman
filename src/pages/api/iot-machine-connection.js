@@ -12,15 +12,15 @@ export default async function handler(req, res) {
     }
     if(token){
       return await new Promise(async (resolve, reject) => {
-        await axios.get(`https://iot-backend.ap.ngrok.io/api/machine-connections?populate=*&filters[machine][id][$eq]=${data?.data.machine}`, config)
-        // await axios.get(`http://10.10.122.75:1340/api/machine-connections?populate=*&filters[machine][id][$eq]=${data?.data.machine}`, config)
+        // await axios.get(`https://iot-backend.ap.ngrok.io/api/machine-connections?populate=*&filters[machine][id][$eq]=${data?.data.machine}`, config)
+        await axios.get(`http://10.10.122.91:1340/api/machine-connections?populate=*&filters[machine][id][$eq]=${data?.data.machine}`, config)
         .then(async response => {
           let machine_connection = response.data.data[0].id
           let data2 = {
             is_connected: true
           }
-          await axios.put(`https://iot-backend.ap.ngrok.io/api/machine-connections/${machine_connection}`, {data:data2}, config).then(ress=>{
-          // await axios.put(`http://10.10.122.75:1340/api/machine-connections/${machine_connection}`, {data:data2}, config).then(ress=>{
+          // await axios.put(`https://iot-backend.ap.ngrok.io/api/machine-connections/${machine_connection}`, {data:data2}, config).then(ress=>{
+          await axios.put(`http://10.10.122.91:1340/api/machine-connections/${machine_connection}`, {data:data2}, config).then(ress=>{
             console.log('Updated', ress.data)
             res.status(200).json({ data: ress.data });
             resolve();
